@@ -1,14 +1,15 @@
 
 // 定数
-const ALG_PLAIN = 0;           // mot de passe en clair : ne fonctionnera pas sur les serveurs Unix
-const ALG_CRYPT = 1;           // chiffrement par la fonction crypt() d'Unix
-const ALG_APMD5 = 2;           // chiffrement en MD5, utilisé par défaut sous Windows entre autres.
-const ALG_APSHA = 3;           // chiffrement en SHA-1
+const ALG_PLAIN = 0;           // 平文（暗号化なし）：Unixサーバでは動作しません。
+const ALG_CRYPT = 1;           // Unixのcrypt()関数による暗号化
+const ALG_APMD5 = 2;           // Windowsなどで標準的に使用されているMD5による暗号化
+const ALG_APSHA = 3;           // SHA-1による暗号化
 const AP_SHA1PW_ID = "{SHA}";
 const AP_MD5PW_ID = "$apr1$";
 
 // n文字以上の数値vをbase-64に変換します。Apache 1.3のコードから派生した機能
 let itoa64 = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";  /* 0 ... 63 => ASCII - 64 */
+
 function ap_to64(v, n) {
 	let s = '';
 	while (--n >= 0) {
@@ -37,15 +38,21 @@ function htpasswd(user, pw, alg) {
 	let salt = ap_to64(Math.floor(Math.random() * 16777215), 4)    // 2^24-1 : 4 * 6 bits.
 		+ ap_to64(Math.floor(Math.random() * 16777215), 4);   // 2^24-1 : 4 * 6 bits.
 
-
 	let plus127 = 0;
-	for (let i = 0; i < user.length; i++) if (user.charCodeAt(i) > 127) plus127++;
-	if (plus127) alert("Apache doesn't like non-ascii characters in the user name.");
+	for (let i = 0; i < user.length; i++) {
+		if (user.charCodeAt(i) > 127) plus127++;
+	}
+	if (plus127) {
+		alert("Apacheはユーザ名に非アスキー文字が含まれることを嫌います。");
+	}
 
-	let cpw = '';         // Mot de passe chiffré ; max 119 caractères.
+	// 暗号化されたパスワード（最大119文字）
+	let cpw = '';
+
+	// 暗号化アルゴリズムによって分岐
 	switch (alg) {
 		/*
-		 * output of base64 encoded SHA1 is always 28 chars + AP_SHA1PW_ID length (ce qui fait 33 caractères)
+		 * base64エンコードされたSHA1の出力は、常に28文字＋AP_SHA1PW_IDの長さ（ce qui fait 33 caractères）になります。
 		 */
 		case ALG_APSHA:
 			cpw = AP_SHA1PW_ID + b64_sha1(pw);
@@ -105,17 +112,16 @@ function htpasswd(user, pw, alg) {
 			break;
 	}
 
-	/*
-	 * Check to see if the buffer is large enough to hold the username,
-	 * hash, and delimiters.
-	 */
-	if (user.length + 1 + cpw.length > 255) alert('Your login and password are too long.');
-	else return user + ':' + cpw;
+	// バッファがユーザー名を格納するのに十分な大きさかどうかを確認します。
+	// ハッシュとデリミタを格納するのに十分な大きさかどうかを確認します。
+	if (user.length + 1 + cpw.length > 255) {
+		alert('ユーザー名とパスワードが長すぎます。');
+	} else {
+		return user + ':' + cpw;
+	}
 }
 
-//=========================================
 // パスワードの生成
-//=========================================
 function pwgen(pwl) {
 	// アクセント付きの文字を含む他の文字を置くことができます（ただし、以下の場合に限ります）。
 	// エンコーダー、クライアント、サーバーの3つのシステムで同じASCIIコードを使用しています。)
