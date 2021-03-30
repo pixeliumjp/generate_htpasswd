@@ -12,40 +12,40 @@
 
 	<body>
 	
-	<h2>htpasswd生成</h2>
-	<h3>htaccess パスワード用 MD5 ハッシュ計算</h3>
-	<br>
-	このhtpasswdジェネレーターは、入力情報をサーバーへ情報を送信しません。<br>オフラインで動作するよう設計されております。
-	<br>
-	
-		ユーザー名<input value="" name="user" size="30" type="text">
-		パスワード<input value="" name="pwd1" size="25" type="text">
-		アルゴリズム
-		<select name="alg">
-			<option>none (Windows &amp; TPF servers)</option>
-			<option>Crypt (all Unix servers)</option>
-			<option selected="selected">MD5 (Apache servers only)</option>
-			<option>SHA-1 (Netscape-LDIF / Apache servers)</option>
-		</select>
+		<h2>htpasswd生成</h2>
+		<p>
+			このhtpasswdジェネレーターは、入力情報をサーバーへ情報を送信しません。<br>オフラインで動作するよう設計されております。
+		</p>
+		
+		<form>
+			ユーザー名<input value="" name="user" size="30" type="text">
+			パスワード<input value="" name="pwd1" size="25" type="text">
+			アルゴリズム
+			<select name="alg">
+				<option>none (Windows &amp; TPF servers)</option>
+				<option>Crypt (all Unix servers)</option>
+				<option selected="selected">MD5 (Apache servers only)</option>
+				<option>SHA-1 (Netscape-LDIF / Apache servers)</option>
+			</select>
 
-		左で設定したパスワードを暗号化
-		<input value="暗号化" onclick="this.form.pwd2.value=htpasswd(this.form.user.value, this.form.pwd1.value, this.form.alg.selectedIndex)" type="button"><br>
-		<br>
-		<select name="taille">
-		  <option>6</option>
-		  <option>7</option>
-		  <option>8</option>
-		  <option>9</option>
-		  <option selected="selected">10</option>
-		  <option>11</option>
-		  <option>12</option>
-		  <option>15</option>
-		  <option>20</option>
-		</select>
-		文字のランダムパスワード生成 <input value="生成" onclick="generation(this.form)" type="button">
-	
-		右の文字列を.htpasswdファイルにコピー＆ペーストしてください
-		<input value="" name="pwd2" size="60" type="text">
+			<select name="taille">
+				<option>6</option>
+				<option>7</option>
+				<option>8</option>
+				<option>9</option>
+				<option>10</option>
+				<option>11</option>
+				<option>12</option>
+				<option>15</option>
+				<option selected="selected">20</option>
+			</select>
+			文字のランダムパスワード生成 <input value="生成" onclick="generation(this.form)" type="button">
+
+			<input value="暗号化" onclick="this.form.pwd2.value=htpasswd(this.form.user.value, this.form.pwd1.value, this.form.alg.selectedIndex)" type="button"><br>
+		
+			右の文字列を.htpasswdファイルにコピー＆ペーストしてください
+			<input value="" name="pwd2" size="60" type="text">
+		</form>
 
 	</body>
-	</html>
+</html>
