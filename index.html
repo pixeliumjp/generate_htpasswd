@@ -1,0 +1,90 @@
+
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>htpasswdジェネレータ - htaccess パスワード用 MD5 ハッシュ計算</title>
+	<script src="lib/md5.js"></script>
+	<script src="lib/sha1.js"></script>
+	<script src="lib/javacrypt.js"></script>
+	<script src="generate.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="index.css" media="all">
+	</head>
+	<body>
+	
+	<table width="100%">
+	  <tbody><tr>
+		<td>
+	<div style="text-align: center;">
+	<h2>htpasswdジェネレータ</h2>
+	<h3>htaccess パスワード用 MD5 ハッシュ計算</h3>
+	<br>
+	このhtpasswdパスワードジェネレータは、完全なプライバシーを保証するため、オフラインで動作するよう設計されております。<br>
+	<span class="surligne">したがって、全過程はあなたのコンピューター内で稼動しており、入力情報は任意のサーバに送信されません。</span>
+	</div>
+	<br>
+	
+	<form id="formulaire" method="get" action="http://aspirine.org/htpasswd_en.html" onsubmit="return false">
+	<table style="width: 100%;"><tbody><tr align="center"><td>
+	
+	<table style="width: 750px; background-color: rgb(0, 0, 0);" cellpadding="4" cellspacing="1">
+	  <tbody><tr style="background-color: rgb(128, 176, 255);">
+		<td colspan="2">
+		  ユーザ名　　　　　　<input value="" name="user" size="30" type="text">
+		</td>
+	  </tr>
+	  <tr style="background-color: rgb(128, 176, 255);">
+	  <td>
+		<table style="width: 100%;">
+		<tbody><tr><td>パスワード</td><td><input value="" name="pwd1" size="25" type="text"></td></tr>
+		<tr><td>アルゴリズム</td><td>
+		  <select name="alg">
+			<option>none (Windows &amp; TPF servers)</option>
+			<option>Crypt (all Unix servers)</option>
+			<option selected="selected">MD5 (Apache servers only)</option>
+			<option>SHA-1 (Netscape-LDIF / Apache servers)</option>
+		  </select><br>
+		</td>
+		</tr>
+		</tbody></table>
+	  </td>
+	  <td style="width: 300px; text-align: center;">
+		左で設定したパスワードを暗号化 <input value="暗号化" onclick="this.form.pwd2.value=htpasswd(this.form.user.value, this.form.pwd1.value, this.form.alg.selectedIndex)" type="button"><br>
+		<br>
+		<select name="taille">
+		  <option>6</option>
+		  <option>7</option>
+		  <option>8</option>
+		  <option>9</option>
+		  <option selected="selected">10</option>
+		  <option>11</option>
+		  <option>12</option>
+		  <option>15</option>
+		  <option>20</option>
+		</select>
+		文字のランダムパスワード生成 <input value="生成" onclick="generation(this.form)" type="button">
+	  </td>
+	  </tr>
+	  <tr style="background-color: rgb(128, 176, 255);">
+		<td colspan="2">
+		右の文字列を.htpasswdファイルにコピー＆ペーストしてください
+		<input value="" name="pwd2" size="60" type="text">
+		</td>
+	  </tr>
+	</tbody></table>
+	
+	</td></tr></tbody></table>
+	
+	</form>
+	
+	</td>
+	<td>
+	
+	</td>
+	</tr>
+	</tbody></table>
+	
+	
+	</body>
+	</html>
+	
