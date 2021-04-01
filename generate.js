@@ -135,7 +135,7 @@ function pwgen(pwl) {
 }
 
 function generation(f) {
-	let pw = pwgen(f.taille.options[f.taille.selectedIndex].text);
-	f.pwd1.value = pw;
-	f.pwd2.value = htpasswd(f.user.value, pw, f.alg.selectedIndex);
+	let pw = pwgen(f.select_pw_length.options[f.select_pw_length.selectedIndex].text);
+	f.input_password.value = pw;
+	f.output_password.value = htpasswd(f.user.value, pw, f.alg.selectedIndex);
 }

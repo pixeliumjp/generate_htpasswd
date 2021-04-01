@@ -1,0 +1,31 @@
+{
+  "name": "generate_htpasswd",
+  "description": "htpasswd生成",
+  "version": "1.0.1",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "caniuse-lite": "^1.0.30001197",
+    "gulp": "^4.0.2",
+    "gulp-cssnano": "^1.1.0",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.0",
+    "gulp-sass": "^4.1.0"
+  },
+  "scripts": {
+    "build": "npx gulp"
+  },
+  "keywords": [],
+  "author": "Pixelium",
+  "license": "ISC",
+  "directories": {
+    "lib": "lib"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not ie 11",
+    "not dead"
+  ]
+}
