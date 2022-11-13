@@ -1,90 +1,102 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>.htpasswd生成ツール</title>
-		<script src="lib/md5.js"></script>
-		<script src="lib/sha1.js"></script>
-		<script src="lib/javacrypt.js"></script>
-		<script src="generate.js"></script>
-		<link href="style.css" rel="stylesheet">
-	</head>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>.htpasswd生成ツール</title>
+    <script src="lib/md5.js"></script>
+    <script src="lib/sha1.js"></script>
+    <script src="lib/javacrypt.js"></script>
+    <script src="generate.js"></script>
+    <link href="style.css" rel="stylesheet" />
+  </head>
 
-	<body>
-		<header>
-			<h1><img src="site_logo_h.svg" alt=""></h1>
-		</header>
-		<div class="container">
-			<div class="primary">
-				<div class="box">
-					<h2>.htpasswd生成ツール</h2>
-					<p>
-						このhtpasswdジェネレーターは、入力情報をサーバーへ情報を送信しません。<br>
-						オフラインで動作するよう設計されております。
-					</p>
-					<form>
-						<table>
-							<tr>
-								<th>ユーザー名</th>
-								<td>
-									<input value="" name="user" size="30" type="text">
-								</td>
-							</tr>
-							<tr>
-								<th>パスワード</th>
-								<td>
-									<input value="" name="input_password" size="25" type="text">
-								</td>
-							</tr>
-							<tr>
-								<th>暗号化方式</th>
-								<td>
-									<select name="alg">
-										<option>none (Windows &amp; TPF servers)</option>
-										<option>Crypt (all Unix servers)</option>
-										<option selected="selected">MD5 (Apache servers only)</option>
-										<option>SHA-1 (Netscape-LDIF / Apache servers)</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<th>文字のランダムパスワード生成</th>
-								<td>
-									<select name="select_pw_length">
-										<option>6</option>
-										<option>7</option>
-										<option>8</option>
-										<option>9</option>
-										<option>10</option>
-										<option>11</option>
-										<option>12</option>
-										<option>15</option>
-										<option selected="selected">20</option>
-									</select>
-									<input value="生成" onclick="generation(this.form)" type="button">
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2" class="input-generate">
-									<input value="暗号化" onclick="this.form.output_password.value=htpasswd(this.form.user.value, this.form.input_password.value, this.form.alg.selectedIndex)" type="button">
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2" class="output">
-									.htpasswdファイルにコピー＆ペーストしてください<br>
-									<input value="" name="output_password" size="60" type="text">
-								</td>
-							</tr>
-						</table>
-					</form>
-				</div>
-			</div>
-			<div class="secondary">
-				<div class="menu">
-					aaa
-				</div>
-			</div>
-		</div>
-	</body>
+  <body>
+    <header>
+      <h1><img src="site_logo_h.svg" alt="" /></h1>
+    </header>
+    <div class="container">
+      <div class="primary">
+        <div class="box">
+          <h2>.htpasswd生成ツール</h2>
+          <p>
+            このhtpasswdジェネレーターは、入力情報をサーバーへ情報を送信しません。<br />
+            オフラインで動作するよう設計されております。
+          </p>
+          <form>
+            <table>
+              <tr>
+                <th>ユーザー名</th>
+                <td>
+                  <input value="" name="user" size="30" type="text" />
+                </td>
+              </tr>
+              <tr>
+                <th>パスワード</th>
+                <td>
+                  <input value="" name="input_password" size="25" type="text" />
+                </td>
+              </tr>
+              <tr>
+                <th>暗号化方式</th>
+                <td>
+                  <select name="alg">
+                    <option>none (Windows &amp; TPF servers)</option>
+                    <option>Crypt (all Unix servers)</option>
+                    <option selected="selected">
+                      MD5 (Apache servers only)
+                    </option>
+                    <option>SHA-1 (Netscape-LDIF / Apache servers)</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>文字のランダムパスワード生成</th>
+                <td>
+                  <select name="select_pw_length">
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>15</option>
+                    <option selected="selected">20</option>
+                  </select>
+                  <input
+                    value="生成"
+                    onclick="generation(this.form)"
+                    type="button"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="input-generate">
+                  <input
+                    value="暗号化"
+                    onclick="this.form.output_password.value=htpasswd(this.form.user.value, this.form.input_password.value, this.form.alg.selectedIndex)"
+                    type="button"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="output">
+                  .htpasswdファイルにコピー＆ペーストしてください<br />
+                  <input
+                    value=""
+                    name="output_password"
+                    size="60"
+                    type="text"
+                  />
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+      <div class="secondary">
+        <div class="menu">aaa</div>
+      </div>
+    </div>
+  </body>
 </html>
